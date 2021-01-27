@@ -2,7 +2,7 @@
 
 
 # setup the envirnment
-echo "Setting up the Anaconda environment" >| error.txt
+echo "Setting up the Anaconda environment" >> error.txt
 echo "We are running on $1" >> error.txt
 date >> error.txt
 source /home/programs/anaconda/linux-5.3.6/init.sh
