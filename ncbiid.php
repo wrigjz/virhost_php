@@ -19,7 +19,7 @@ echo "You entered $ncbiid $target_dir<br>";
 
 $errfile = $target_dir . "error.txt"; # write something to the error.txt file
 $errfile_handle = fopen($errfile, "w");
-fwrite($errfile_handle, "Getting resdy to submit to queue system\n");
+fwrite($errfile_handle, "Getting ready to submit to queue system\n");
 fclose($errfile_handle);
 
 # Now submit the job to the qeuue system

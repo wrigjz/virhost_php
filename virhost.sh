@@ -15,7 +15,7 @@ fi
 
 # retreieve the codes from ncbi
 echo "Retrieveing the $1 codes from ncbi" >> error.txt
-/var/www/html/virhost/scripts/datasets download ortholog symbol $1 --taxon human >> error.txt 2>&1
+/var/www/html/virhost/scripts/datasets download ortholog symbol $1 --taxon human > /dev/null 2>>error.txt
 if [ $error -ne 0 ] ; then
     echo "Unable to get the $1 code from ncbi" >> error.txt
     echo $error >> error.txt
@@ -25,7 +25,7 @@ sleep 5
 
 # unzip the dataset
 echo "Unzipping the dataset" >> error.txt
-unzip ncbi_dataset.zip >> error.txt 2>&1
+unzip ncbi_dataset.zip > /dev/null 2>>error.txt
 if [ $error -ne 0 ] ; then
     echo "Unable to unzip the downloaded set" >> error.txt
     echo $error >> error.txt
@@ -34,7 +34,7 @@ fi
 sleep 5
 
 # Alidn using clustal omega
-echo "Running Clastal Omega" >> error.txt
+echo "Running Clustal Omega" >> error.txt
 /home/programs/clustalw2.1_linux/bin/clustalo-1.2.4-Ubuntu-x86_64 -i ./ncbi_dataset/data/protein.faa \
     -o clustal.aln --outfmt=clustal -v --force >> error.txt 2>&1
 if [ $error -ne 0 ] ; then
