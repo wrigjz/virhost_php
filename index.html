@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <!-- saved from url=(0030)http://192.168.15.106/dnasite/ -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Conserv</title>
+    <meta content="Karen Sargsyan, Karine Mazmanian, Jon Wright, Carmay Lim" name="author">
+    <meta content="Webpage interface to the VirHost Analysis Server"
+      name="description">
+    <meta content="VirHost - The Potential Hosts for Human Viruses Server" name="keywords">
+  </head>
+<body BGCOLOR="#EEEEEE">
+   <div style="text-align: center;">
+      <center> <img src="images/as-en_07.gif" alt="Academia Sinica Logo"></center>
+    </div>
+    <h1 style="text-align: center;">VirHost, The Potential Hosts for Human Viruses Server</h1>
+    <h2 style="text-align: center;">Karen Sargsyan<sup>1</sup>, Karine Mazmanian,<sup>1</sup>
+    Jon Wright<sup>1</sup> and Carmay Lim<sup>1,2</sup></h2>
+    <h3 style="text-align: center;"> <sup>1</sup>Institute of
+      Biomedical Sciences, Academia Sinica, Taipei, Taiwan<br>
+        <sup>2</sup>Department of Chemistry, National TsingHua University,
+          HsinChu, Taiwan </h3>
+    <p>This server can be used to search for other species that may host human viruses.</p>
+      For your target protein provide either a name or a fasta format sequence that you would like the results for.</p>
+    <p>An example of the results for the ACE2 entry chain A can be found on this <a href="examples/ace2">page</a>.
+    <hr style="border-style: solid; color: black;">
+
+<form action="scripts/upload.php" method="post" enctype="multipart/form-data">
+  <b>Submission area choose option A <em> or </em> Option B:</b><br>
+<form action="scripts/pdbid.php" method="post" enctype="multipart/form-data">
+  <p> <b>Option A) For a sequence with a known NCBI name.</b><br>
+  Provide a NCBI ID: <input type="text" name="PDBID"> 
+  <input type="submit" value="Submit NCBI ID" name="submit">
+</form>
+<form action="scripts/fasta.php" method="post" enctype="multipart/form-data">
+  <p> <b>Option B) For a fasta format.</b><br>
+  Please paste it into the box here, single letter codes only:<br>
+  <textarea cols="80" rows="10" name="FASTA" id="FASTA"></textarea>
+  <input type="submit" value="Submit the Fasta Sequence" name="submit">
+  </textarea>
+</form>
+
+<hr style="border-style: solid; color: black;">
+<p>The VirHost server was created by Karen Sargsyan, Karine Mazmanian, Jon D Wright and Carmay Lim and is hosted in the Institute of BioMedical Sciences, Academia Sinica, Taipei, Taiwan.</p>
+<p>Code that this server uses can be obtained from github as wrigjz/virshost_python.
+<hr style="border-style: solid; color: black;">
+   <a href="https://virhost.limlab.dnsalias.org">VirHost</a> is hosted at <a href="http://www.ibms.sinica.edu.tw">The Institute of Biomedical Sciences</a>, <a href="http://www.sinica.edu.tw">Academia Sinica</a>, Taipei 11529, Taiwan.
+               <hr style="border-style: solid; color: black;">
+</body>
+</html>
