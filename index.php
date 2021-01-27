@@ -97,14 +97,9 @@ function failed($jobid) {
     echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses Server.";
     echo "</center>";
     echo "<H2>Job $jobid is Missing for some reason.</H2>";
-    if (filesize("error.txt") != 0 || filesize("error.txt") != 0) {
+    if (filesize("error.txt") != 0) {
         echo "To try to get an idea what is wrong<br>";
-    }
-    if (filesize("error.txt") != 0) {
         echo "You can try looking at the <a href=\"error.txt\">error.txt</a> file,<br>";
-    }
-    if (filesize("error.txt") != 0) {
-        echo "You can try looking at the <a href=\"error.txt\">error.txt</a> file<br> ";
     }
 }
 
