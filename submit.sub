@@ -14,4 +14,4 @@ touch /scratch/working/$random/made_it
 
 # run the job
 /var/www/html/virhost/scripts/virhost.sh $ncbiid
-cp /scratch/working/$random/* /var/www/html/virhost/results/$random/.
+cp -r /scratch/working/$random/* /var/www/html/virhost/results/$random/.

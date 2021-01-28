@@ -7,9 +7,12 @@
 ###################################################################################################
 # This php ver. 7 script askes for a NCBIID  and then starts the VirHost process
 
-# Retrieve the PDB and chain ids and check do a few simple checks on the inputs
-$ncbiid = strtolower($_POST["NCBIID"]);
-
+# Retrieve the NCBIID - first check if one was submitted though
+$ncbiid = strtoupper($_POST["NCBIID"]);
+if ($ncbiid != true) {
+    echo "Sorry but you do not appear to have entered a recgonizable NCBI ID, please try again";
+    exit();
+}
 # Call the mkdirFunc and get the target, results directories and random number back
 list($rand_target, $target_dir, $result_dir) = mkdirFunc();
 echo "You entered $ncbiid $target_dir<br>";

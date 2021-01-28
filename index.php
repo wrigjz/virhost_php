@@ -153,10 +153,10 @@ function finished($jobid) {
     echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses server.";
     echo "</center>";
     # Now reate the webpage itself
-    echo "Your job has finished and the results are available.<br>";
-    echo "<p>The results can be downloaded from <a href=\"output.txt\">here</a>.";
+    echo "Your job has finished and the results are available below.<br>";
+    echo "<p>The results can also be downloaded from <a href=\"output.txt\">here</a>.";
     echo "<pre>";
-    echo file_get_contents( "conservation.txt" ); // get the contents, and echo it out.
+    echo file_get_contents( "output.txt" ); // get the contents, and echo it out.
     echo "</pre>";
     echo "<hr style=\"border-style: solid; color: black;\">";
     echo "<a href=\"https://conserv.limlab.dnsalias.org\">VirHost</a> is hosted at <a href=\"http://www.ibms.sinica.edu.tw\">The Institute of Biomedical Sciences</a>, <a href=\"http://www.sinica.edu.tw\">Academia Sinica</a>, Taipei 11529, Taiwan.";

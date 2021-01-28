@@ -12,6 +12,7 @@ if [ $error -ne 0 ] ; then
     echo $error >> error.txt
     exit 1
 fi
+wait
 
 # retreieve the codes from ncbi
 echo "Retrieveing the $1 codes from ncbi" >> error.txt
@@ -21,8 +22,9 @@ if [ $error -ne 0 ] ; then
     echo $error >> error.txt
     exit 1
 fi
-sleep 5
+wait
 
+sleep 20
 # unzip the dataset
 echo "Unzipping the dataset" >> error.txt
 unzip ncbi_dataset.zip > /dev/null 2>>error.txt
@@ -31,7 +33,7 @@ if [ $error -ne 0 ] ; then
     echo $error >> error.txt
     exit 1
 fi
-sleep 5
+wait
 
 # Alidn using clustal omega
 echo "Running Clustal Omega" >> error.txt
@@ -42,7 +44,7 @@ if [ $error -ne 0 ] ; then
     echo $error >> error.txt
     exit 1
 fi
-sleep 5
+wait
 
 # Sort the results
 echo "Running dataformat" >> error.txt
@@ -53,8 +55,8 @@ if [ $error -ne 0 ] ; then
     echo $error >> error.txt
     exit 1
 fi
+wait
 
-sleep 5
 echo "Running ortholog_analysis" >> error.txt
 python3 /var/www/html/virhost/scripts/ortholog_analysis.py >> error.txt 2>&1
 if [ $error -ne 0 ] ; then
@@ -62,5 +64,6 @@ if [ $error -ne 0 ] ; then
     echo $error >> error.txt
     exit 1
 fi
+wait
 
 echo "All done" >> error.txt
