@@ -16,7 +16,7 @@ wait
 
 # retreieve the codes from ncbi
 echo "Retrieveing the $1 codes from ncbi" >> error.txt
-/var/www/html/virhost/scripts/datasets download ortholog symbol $1 --taxon human > /dev/null 2>>error.txt
+/home/programs/ncbi-blast/datasets download ortholog symbol $1 --taxon human > /dev/null 2>>error.txt
 if [ $error -ne 0 ] ; then
     echo "Unable to get the $1 code from ncbi" >> error.txt
     echo $error >> error.txt
@@ -48,7 +48,7 @@ wait
 
 # Sort the results
 echo "Running dataformat" >> error.txt
-/var/www/html/virhost/scripts/dataformat tsv gene --inputfile ./ncbi_dataset/data/data_report.jsonl \
+/home/programs/ncbi-blast/dataformat tsv gene --inputfile ./ncbi_dataset/data/data_report.jsonl \
     --fields gene-id,tax-name,common-name > names.txt 2>>error.txt
 if [ $error -ne 0 ] ; then
     echo "Dataformat failed" >> error.txt

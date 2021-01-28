@@ -5,13 +5,15 @@
 ## to copy, modify and distribute this script but all modifications must be offered
 ## back to the original authors
 ###################################################################################################
-# This php ver. 7 script askes for a PDB ID and chain ID, it checks that they are 4 and 1 letter
-# and then attemps to extract the chain from an archive version of the PDB entry
-# It creates a working and a results directory and then queues a Conserv job
+# This php ver. 7 script askes for a fasta format sequence 
 # Then it submits a conserv job to the server
 
-# Retrieve the PDB and chain ids and check do a few simple checks on the inputs
+# Retrieve the fasta sequence from the webapge, checks if there is one and then saves it to a file
 $fasta = strtoupper($_POST["FASTA"]);
+if ($fasta != true) {
+    echo "Sorry but you do not appear to have entered a recgonizable fasta sequence, please try again";
+    exit();
+}
 
 # Call the mkdirFunc and get the target, results directories and random number back
 list($rand_target, $target_dir, $result_dir) = mkdirFunc();
@@ -28,14 +30,14 @@ fclose($errfile_handle);
 
 # Now submit the job to the qeuue system
 if ($ret_var == 0) {
-    echo "We will now queue the Conserv job, please wait a few seconds to be directed to the running/results page.<br>";
-    exec('/usr/local/bin/qsub -S /bin/bash /var/www/html/conserv/scripts/submit_fasta.sub -N C_' . $rand_target . ' -v "random=' . $rand_target . '" > ' . $result_dir . 'jobid.txt');
+    echo "We will now queue the VirHost job, please wait a few seconds to be directed to the running/results page.<br>";
+    exec('/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit_fasta.sub -N C_' . $rand_target . ' -v "random=' . $rand_target . '" > ' . $result_dir . 'jobid.txt');
     symlink($target_dir . 'error.txt', $result_dir . 'error_link.txt');
 } else {
     exec('rsync -av ' . $target_dir . ' ' . $result_dir);
     exec('echo 999999.limlab >| ' . $result_dir . 'jobid.txt');
 }
-echo "<meta http-equiv=\"refresh\" content=\"5; URL=http://conserv.limlab.dnsalias.org/results/$rand_target\" />";
+echo "<meta http-equiv=\"refresh\" content=\"5; URL=http://limlab.dnsalias.org/virhost/results/$rand_target\" />";
 
 # This function makes a unique random number directory in /scratch and results
 function mkdirFunc() {
@@ -47,7 +49,7 @@ function mkdirFunc() {
         if ($dir_exists == false) {
             mkdir($target_dir, 0700);
             mkdir($result_dir, 0700);
-            symlink("/var/www/html/conserv/scripts/index.php", "$result_dir/index.php");
+            symlink("/var/www/html/virhost/scripts/index.php", "$result_dir/index.php");
         } else {
             gotomkdirloop;
         }
