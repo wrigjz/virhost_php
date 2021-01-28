@@ -6,7 +6,7 @@
 ## back to the original authors
 ###################################################################################################
 # This php ver. 7 script askes for a fasta format sequence 
-# Then it submits a conserv job to the server
+# Then it submits a virhost job to the server
 
 # Retrieve the fasta sequence from the webapge, checks if there is one and then saves it to a file
 $fasta = strtoupper($_POST["FASTA"]);
@@ -21,6 +21,7 @@ list($rand_target, $target_dir, $result_dir) = mkdirFunc();
 # Make the list.txt file and save it to the target directory
 $myfile = $target_dir . "input.fasta";
 $listfile = fopen($myfile, "w");
+fwrite($listfile, ">Submitted input fasta sequence\n");
 fwrite($listfile, $fasta);
 fclose($listfile);
 $errfile = $target_dir . "error.txt"; # write something to the error.txt file
@@ -31,7 +32,8 @@ fclose($errfile_handle);
 # Now submit the job to the qeuue system
 if ($ret_var == 0) {
     echo "We will now queue the VirHost job, please wait a few seconds to be directed to the running/results page.<br>";
-    exec('/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit_fasta.sub -N C_' . $rand_target . ' -v "random=' . $rand_target . '" > ' . $result_dir . 'jobid.txt');
+    echo '/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_' . $rand_target . ' -v "random=' . $rand_target . '","ncbiid=' . $ncbiid . '" > ' . $result_dir . 'jobid.txt';
+    #exec('/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_' . $rand_target . ' -v "random=' . $rand_target . '","ncbiid=' . $ncbiid . '" > ' . $result_dir . 'jobid.txt');
     symlink($target_dir . 'error.txt', $result_dir . 'error_link.txt');
 } else {
     exec('rsync -av ' . $target_dir . ' ' . $result_dir);
@@ -39,12 +41,12 @@ if ($ret_var == 0) {
 }
 echo "<meta http-equiv=\"refresh\" content=\"5; URL=http://limlab.dnsalias.org/virhost/results/$rand_target\" />";
 
-# This function makes a unique random number directory in /scratch and results
+# This function makes a unique random number directory in /scratch/working and results
 function mkdirFunc() {
     mkdirloop:
         $rand_target = rand(1, 1000000);
         $target_dir = "/scratch/working/" . $rand_target . "/";
-        $result_dir = "/var/www/html/conserv/results/" . $rand_target . "/";
+        $result_dir = "/var/www/html/virhost/results/" . $rand_target . "/";
         $dir_exists = (is_dir($target_dir));
         if ($dir_exists == false) {
             mkdir($target_dir, 0700);
