@@ -1,4 +1,4 @@
-Search A: input - genename (example: ACE2)
+#Search A: input - genename (example: ACE2)
 
 # to find ncbi 'datasets' and 'dataform' executables check 
 # https://www.ncbi.nlm.nih.gov/datasets/docs/command-line-start/
@@ -6,7 +6,7 @@ Search A: input - genename (example: ACE2)
 # first I get orthologs for the gene
 # in a dedicated directory for a given search, which I assume is
 # generated for each search anew, I run a following command:
-./datasets download ortholog symbol ace2 --taxon human        # ace2 is a genename from the input
+./datasets download ortholog symbol ACE2 --taxon human        # ace2 is a genename from the input
 
 # as a result ncbi_dataset.zip file is downloaded, so
 unzip ncbi_dataset.zip
@@ -25,8 +25,8 @@ unzip ncbi_dataset.zip
 
 # Here again, everthing in this command stays the same in every search
 
-# after that, I run python script 'ortholog_analysis.py' where 'genesymbol' at the top of the script is replaced
-# by the input genename (it is ACE2 in the script at the moment). The text output to be shown is stored in
+# after that, I run python script 'ortholog_analysis.py ACE2' 
+# The text output to be shown is stored in
 # the generated output file 'output.txt'
 
 
