@@ -24,12 +24,15 @@ $listfile = fopen($myfile, "w");
 fwrite($listfile, ">Submitted input fasta sequence\n");
 fwrite($listfile, $fasta);
 fclose($listfile);
-$errfile = $target_dir . "error.txt"; # write something to the error.txt file
+
+# write something to the error.txt file so we know we have at least reached here
+$errfile = $target_dir . "error.txt";
 $errfile_handle = fopen($errfile, "w");
 fwrite($errfile_handle, "Preparing and checking the input files\n");
 fclose($errfile_handle);
 
-# Now submit the job to the qeuue system
+# Now set up the scripts to find the gene symbol code and put it into background
+# Write out a dummy jobid.txt so that the index.php file has something to check on for its reports
 if ($ret_var == 0) {
     echo "We are currently trying to get a gene symbol code for your fasta sequence<br>\n";
     echo "Please wait a minute while we do that, once that is done we will submit your job to the qeueue<br>\n";
@@ -44,6 +47,7 @@ if ($ret_var == 0) {
     exec('rsync -av ' . $target_dir . ' ' . $result_dir);
     exec('echo 999999.limlab >| ' . $result_dir . 'jobid.txt');
 }
+# Give it 5seconds and then move to the results directory and run the html from there
 echo "<meta http-equiv=\"refresh\" content=\"5; URL=http://limlab.dnsalias.org/virhost/results/$rand_target\" />";
 
 # This function makes a unique random number directory in /scratch/working and results
@@ -56,6 +60,7 @@ function mkdirFunc() {
         if ($dir_exists == false) {
             mkdir($target_dir, 0700);
             mkdir($result_dir, 0700);
+            symlink("/var/www/html/virhost/scripts/index.php", "$result_dir/index.php");
         } else {
             gotomkdirloop;
         }

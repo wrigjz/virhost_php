@@ -23,8 +23,7 @@ fclose($jobfile);
 if ($jobid[1] == "Getting" and $jobid[2] == "gene") {
     genesymbol();
     echo "<meta http-equiv=\"refresh\" content=\"60\"/>";
-}
-else {
+} else {
     # Get the status and give the status as the header
     $my_temp = shell_exec("/usr/local/bin/qstat | grep $jobid");
     $job_status = preg_split('/\s+/', $my_temp);
@@ -175,6 +174,6 @@ function genesymbol() {
      echo "At the present time the server is attempting to retrieve a gene code from your fasta sequence,<br>";
      echo "when that step is completed then gene code will be submitted to the queue for processing.<br>";
      echo "When that happens this page will automatically refresh to give status updates.<br>";
-     echo "Preparing inputs: &#9744:;
+     echo "Preparing inputs: &#9744";
 }
 ?>
