@@ -25,7 +25,7 @@ echo "Getting the code from NCBI" >> error.txt
 ncbiid=`python3 /var/www/html/virhost/scripts/sequence_to_gen.py`
 
 # Now submit the job - send a copy of the command line to error.txt file
-echo "Now submitting the job to the qeueue system" >> error.txt
+echo "Getting ready to submit to queue system" >> error.txt
 echo "/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_$rand_target -v \"random=$rand_target,ncbiid=$ncbiid\" >| $result_dir/jobid.txt" >> error.txt
 /usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_$rand_target -v "random=$rand_target,ncbiid=$ncbiid" >| $result_dir/jobid.txt
 

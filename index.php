@@ -20,7 +20,7 @@ $jobid = fgets($jobfile);
 fclose($jobfile);
 
 # Check if the jobfile has actually been created or if it is a placeholder while getting the gene symbol
-if ($jobid[1] == "Getting" and $jobid[2] == "gene") {
+if ($jobid == "Getting gene\n") {
     genesymbol();
     echo "<meta http-equiv=\"refresh\" content=\"60\"/>";
 } else {
@@ -171,9 +171,21 @@ function finished($jobid) {
 }
 
 function genesymbol() {
-     echo "At the present time the server is attempting to retrieve a gene code from your fasta sequence,<br>";
-     echo "when that step is completed then gene code will be submitted to the queue for processing.<br>";
+     echo "<head>";
+     echo "<title>::: Preparing  at the VirHost residue server :::</title>";
+     echo "<meta charset=\"utf-8\">";
+     echo "</head>";
+     echo "<body BGCOLOR=\"#FFFFFF\">";
+     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
+     echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses server.";
+     echo "</center>";
+     echo "This page will be updated every minute<br>";
+     echo "At the present time the server is attempting to retrieve a gene code from your fasta sequence.<br>";
+     echo "When that step is completed then gene code will be submitted to the queue for processing.<br>";
      echo "When that happens this page will automatically refresh to give status updates.<br>";
      echo "Preparing inputs: &#9744";
+     echo "<hr style=\"border-style: solid; color: black;\">";
+     echo "<a href=\"https://conserv.limlab.dnsalias.org\">VirHost</a> is hosted at <a href=\"http://www.ibms.sinica.edu.tw\">The Institute of Biomedical Sciences</a>, <a href=\"http://www.sinica.edu.tw\">Academia Sinica</a>, Taipei 11529, Taiwan.";
+     echo "<hr style=\"border-style: solid; color: black;\">";
 }
 ?>
