@@ -162,6 +162,10 @@ function finished($jobid) {
     # Now reate the webpage itself
     echo "Your job has finished and the results are available below.<br>";
     echo "<p>The results can also be downloaded from <a href=\"output.txt\">here</a>.";
+    echo "<p>The zip file of orthologs can be downloaded from <a href=\"ncbi_dataset.zip\">here</a>.";
+    echo "<p>The clustal omega alignment can be downloaded from <a href=\"clustal.aln\">here</a>.";
+    echo "<p>The results xml file can be downloaded from <a href=\"results.xml\">here</a>.";
+    echo "<p>The names file can be downloaded from <a href=\"names.txt\">here</a>.";
     echo "<pre>";
     echo file_get_contents( "output.txt" ); // get the contents, and echo it out.
     echo "</pre>";
