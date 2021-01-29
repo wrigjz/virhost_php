@@ -18,22 +18,30 @@
 $jobfile = fopen("jobid.txt", "r") or die("Unable to open file!");
 $jobid = fgets($jobfile);
 fclose($jobfile);
-# Get the status and give the status as the header
-$my_temp = shell_exec("/usr/local/bin/qstat | grep $jobid");
-$job_status = preg_split('/\s+/', $my_temp);
-$found = isset($job_status[4]); # if the job is in the queue this will be set
-if ($found == true) {
-    if ($job_status[4] == "Q") {
-        queuedup($jobid);
-    } elseif ($job_status[4] == "R" || $job_status[4] == "E") {
-        running($jobid);
-    } else { # Job was not in the queue system, ideally we should never get to this line
+
+# Check if the jobfile has actually been created or if it is a placeholder while getting the gene symbol
+if ($jobid[1] == "Getting" and $jobid[2] == "gene") {
+    genesymbol();
+    echo "<meta http-equiv=\"refresh\" content=\"60\"/>";
+}
+else {
+    # Get the status and give the status as the header
+    $my_temp = shell_exec("/usr/local/bin/qstat | grep $jobid");
+    $job_status = preg_split('/\s+/', $my_temp);
+    $found = isset($job_status[4]); # if the job is in the queue this will be set
+    if ($found == true) {
+        if ($job_status[4] == "Q") {
+            queuedup($jobid);
+        } elseif ($job_status[4] == "R" || $job_status[4] == "E") {
+            running($jobid);
+        } else { # Job was not in the queue system, ideally we should never get to this line
+            failed($jobid);
+        }
+    } elseif (filesize("output.txt") != 0) { # Check for an output.txt file, if it exists and is not zero then we have finished
+        finished($jobid);
+    } else { # IF we are here then the job is not in the queue and the output.txt file is empty so we failed!
         failed($jobid);
     }
-} elseif (filesize("output.txt") != 0) { # Check for an output.txt file, if it exists and is not zero then we have finished
-    finished($jobid);
-} else { # IF we are here then the job is not in the queue and the output.txt file is empty so we failed!
-    failed($jobid);
 }
 
 # The functions sections
@@ -161,5 +169,12 @@ function finished($jobid) {
     echo "<hr style=\"border-style: solid; color: black;\">";
     echo "<a href=\"https://conserv.limlab.dnsalias.org\">VirHost</a> is hosted at <a href=\"http://www.ibms.sinica.edu.tw\">The Institute of Biomedical Sciences</a>, <a href=\"http://www.sinica.edu.tw\">Academia Sinica</a>, Taipei 11529, Taiwan.";
     echo "<hr style=\"border-style: solid; color: black;\">";
+}
+
+function genesymbol() {
+     echo "At the present time the server is attempting to retrieve a gene code from your fasta sequence,<br>";
+     echo "when that step is completed then gene code will be submitted to the queue for processing.<br>";
+     echo "When that happens this page will automatically refresh to give status updates.<br>";
+     echo "Preparing inputs: &#9744:;
 }
 ?>

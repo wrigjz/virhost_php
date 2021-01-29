@@ -31,10 +31,15 @@ fclose($errfile_handle);
 
 # Now submit the job to the qeuue system
 if ($ret_var == 0) {
-    echo "We will now queue the VirHost job, please wait a few seconds to be directed to the running/results page.<br>";
-    echo '/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_' . $rand_target . ' -v "random=' . $rand_target . '","ncbiid=' . $ncbiid . '" > ' . $result_dir . 'jobid.txt';
-    #exec('/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_' . $rand_target . ' -v "random=' . $rand_target . '","ncbiid=' . $ncbiid . '" > ' . $result_dir . 'jobid.txt');
+    echo "We are currently trying to get a gene symbol code for your fasta sequence<br>\n";
+    echo "Please wait a minute while we do that, once that is done we will submit your job to the qeueue<br>\n";
+    $shell1 = escapeshellarg($rand_target); # To pass an argument to a basj shell we
+    $shell2 = escapeshellarg($result_dir);  # have to use this format
+    $shell3 = escapeshellarg($target_dir);  # Otherwise they come up empty
+    echo "/var/www/html/virhost/scripts/sequence_to_gen.sh $shell1 $shell2 $shell3 &";
+    shell_exec("/bin/bash /var/www/html/virhost/scripts/sequence_to_gen.sh $shell1 $shell2 $shell3 > /dev/null 2>&1 &");
     symlink($target_dir . 'error.txt', $result_dir . 'error_link.txt');
+    exec('echo Getting gene >| ' . $result_dir . 'jobid.txt');
 } else {
     exec('rsync -av ' . $target_dir . ' ' . $result_dir);
     exec('echo 999999.limlab >| ' . $result_dir . 'jobid.txt');
@@ -51,7 +56,6 @@ function mkdirFunc() {
         if ($dir_exists == false) {
             mkdir($target_dir, 0700);
             mkdir($result_dir, 0700);
-            symlink("/var/www/html/virhost/scripts/index.php", "$result_dir/index.php");
         } else {
             gotomkdirloop;
         }

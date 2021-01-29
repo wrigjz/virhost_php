@@ -1,5 +1,13 @@
 #!/bin/bash
-
+###################################################################################################
+## Jon Wright, IBMS, Academia Sinica, Taipei, 11529, Taiwan
+## These files are licensed under the GLP ver 3, essentially you have the right
+## to copy, modify and distribute this script but all modifications must be offered
+## back to the original authors
+###################################################################################################
+# This is the main driver script for running the virhst process
+# it takes a gene symbol and search for orthologs
+# runs an alignment and then does the prediction
 
 # setup the envirnment
 echo "Setting up the Anaconda environment" >> error.txt
