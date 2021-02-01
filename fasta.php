@@ -48,7 +48,7 @@ if ($ret_var == 0) {
     exec('echo 999999.limlab >| ' . $result_dir . 'jobid.txt');
 }
 # Give it 5seconds and then move to the results directory and run the html from there
-echo "<meta http-equiv=\"refresh\" content=\"5; URL=http://limlab.dnsalias.org/virhost/results/$rand_target\" />";
+echo "<meta http-equiv=\"refresh\" content=\"5; URL=https://virhost.limlab.dnsalias.org/results/$rand_target\" />";
 
 # This function makes a unique random number directory in /scratch/working and results
 function mkdirFunc() {

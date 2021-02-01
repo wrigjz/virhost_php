@@ -170,7 +170,7 @@ function finished($jobid) {
     echo file_get_contents( "output.txt" ); // get the contents, and echo it out.
     echo "</pre>";
     echo "<hr style=\"border-style: solid; color: black;\">";
-    echo "<a href=\"https://conserv.limlab.dnsalias.org\">VirHost</a> is hosted at <a href=\"http://www.ibms.sinica.edu.tw\">The Institute of Biomedical Sciences</a>, <a href=\"http://www.sinica.edu.tw\">Academia Sinica</a>, Taipei 11529, Taiwan.";
+    echo "<a href=\"https://virhost.limlab.dnsalias.org\">VirHost</a> is hosted at <a href=\"http://www.ibms.sinica.edu.tw\">The Institute of Biomedical Sciences</a>, <a href=\"http://www.sinica.edu.tw\">Academia Sinica</a>, Taipei 11529, Taiwan.";
     echo "<hr style=\"border-style: solid; color: black;\">";
 }
 
@@ -189,7 +189,7 @@ function genesymbol() {
      echo "When that happens this page will automatically refresh to give status updates.<br>";
      echo "Preparing inputs: &#9744";
      echo "<hr style=\"border-style: solid; color: black;\">";
-     echo "<a href=\"https://conserv.limlab.dnsalias.org\">VirHost</a> is hosted at <a href=\"http://www.ibms.sinica.edu.tw\">The Institute of Biomedical Sciences</a>, <a href=\"http://www.sinica.edu.tw\">Academia Sinica</a>, Taipei 11529, Taiwan.";
+     echo "<a href=\"https://virhost.limlab.dnsalias.org\">VirHost</a> is hosted at <a href=\"http://www.ibms.sinica.edu.tw\">The Institute of Biomedical Sciences</a>, <a href=\"http://www.sinica.edu.tw\">Academia Sinica</a>, Taipei 11529, Taiwan.";
      echo "<hr style=\"border-style: solid; color: black;\">";
 }
 ?>
