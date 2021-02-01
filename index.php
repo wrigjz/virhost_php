@@ -103,10 +103,18 @@ function failed($jobid) {
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
     echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses Server.";
     echo "</center>";
-    echo "<H2>Job $jobid is Missing for some reason.</H2>";
+    echo "<H2>Your Job $jobid has failed for some reason.</H2>";
     if (filesize("error.txt") != 0) {
-        echo "To try to get an idea what is wrong<br>";
-        echo "You can try looking at the <a href=\"error.txt\">error.txt</a> file,<br>";
+        exec('grep "Unable to get a gene symbol from the submitted fasta sequence" error.txt', $out, $ret_val);
+        if ($ret_val == 0) {
+            echo "It looks like we were unable to get a gene symbol for your submitted fasta sequence, are you sure it is correct?<br>";
+        }
+        exec('grep "are you sure it is a correct gene symbol" error.txt', $out, $ret_val);
+        if ($ret_val == 0) {
+            echo "It looks like we were unable to find your gene symbol in the ncbi, are you sure it is correct? <br>";
+        }
+        echo "To try to get a better idea what went wrong ";
+        echo "you can try looking at the <a href=\"error.txt\">error.txt</a> file, the last lines should indicated the issue.<br>";
     }
 }
 

@@ -23,6 +23,17 @@ source /home/programs/anaconda/linux-5.3.6/init.sh
 # Get the code from ncbi
 echo "Getting the code from NCBI" >> error.txt
 ncbiid=`python3 /var/www/html/virhost/scripts/sequence_to_gen.py`
+error=$?
+if [ "$ncbiid" == "" ] || [ $error -ne 0 ] ; then
+    echo "Unable to get a gene symbol from the submitted fasta sequence" >> error.txt
+    echo $error >> error.txt
+    /bin/rm -rf $result_dir/index.html
+    /bin/ln -s /var/www/html/virhost/scripts/index.php $result_dir/index.php
+    /bin/cp error.txt $result_dir/error.txt
+    echo "Failed job" >|  $result_dir/jobid.txt
+    exit 1
+fi
+wait
 
 # Now submit the job - send a copy of the command line to error.txt file
 echo "Getting ready to submit to queue system" >> error.txt

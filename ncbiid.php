@@ -15,7 +15,7 @@ if ($ncbiid != true) {
 }
 # Call the mkdirFunc and get the target, results directories and random number back
 list($rand_target, $target_dir, $result_dir) = mkdirFunc();
-echo "You entered $ncbiid $target_dir<br>";
+echo "You entered $ncbiid<br>";
 
 $errfile = $target_dir . "error.txt"; # write something to the error.txt file
 $errfile_handle = fopen($errfile, "w");
