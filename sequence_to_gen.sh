@@ -30,7 +30,7 @@ if [ "$ncbiid" == "" ] || [ $error -ne 0 ] ; then
     /bin/rm -rf $result_dir/index.html
     /bin/ln -s /var/www/html/virhost/scripts/index.php $result_dir/index.php
     /bin/cp error.txt $result_dir/error.txt
-    echo "Failed job" >|  $result_dir/jobid.txt
+    echo "alas," >|  $result_dir/jobid.txt
     exit 1
 fi
 wait

@@ -103,7 +103,7 @@ function failed($jobid) {
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
     echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses Server.";
     echo "</center>";
-    echo "<H2>Your Job $jobid has failed for some reason.</H2>";
+    echo "<H2>Your job $jobid has failed for some reason.</H2>";
     if (filesize("error.txt") != 0) {
         exec('grep "Unable to get a gene symbol from the submitted fasta sequence" error.txt', $out, $ret_val);
         if ($ret_val == 0) {
