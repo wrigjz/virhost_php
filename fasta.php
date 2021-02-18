@@ -21,7 +21,18 @@ list($rand_target, $target_dir, $result_dir) = mkdirFunc();
 # Make the list.txt file and save it to the target directory
 $myfile = $target_dir . "input.fasta";
 $listfile = fopen($myfile, "w");
-fwrite($listfile, ">Submitted input fasta sequence\n");
+
+# Write a fasta header if there isn't one already
+$header = 0; # check if the '>' exists, if so just write the file, if not add a line
+$lines = explode("\n", $fasta); # split fasta input to lines
+foreach ($lines as $line) {
+    if ($line[0] == ">") {
+        $header = 1;
+    }
+}
+if ($header == 0) {
+    fwrite($listfile, ">Submitted input fasta sequence\n");
+}
 fwrite($listfile, $fasta);
 fclose($listfile);
 
