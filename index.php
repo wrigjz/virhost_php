@@ -6,9 +6,7 @@
 ## back to the original authors
 ###################################################################################################
 # The is the master index file for the VirHost Webserver - it is based on php ver. 7,
-# If a job is queued or running it tells yu anf gives the position and refreshes each minute
-# If it is finished then it creates the gnuplot file and asembles the lines
-# for jsmol
+# If a job is queued or running it tells you and gives the position and refreshes each minute
 
 # The main driver code is here, we get the jobid and then check the queue system to see if it is
 # Queded or Running or exiting, if it is neither then we check for a results file and if there is one we assume it is finished
