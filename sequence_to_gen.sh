@@ -37,8 +37,13 @@ wait
 
 # Now submit the job - send a copy of the command line to error.txt file
 echo "Getting ready to submit to queue system" >> error.txt
-echo "/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_$rand_target -v \"random=$rand_target,ncbiid=$ncbiid\" >| $result_dir/jobid.txt" >> error.txt
-/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_$rand_target -v "random=$rand_target,ncbiid=$ncbiid" >| $result_dir/jobid.txt
+if [ -s imp_residues.txt ] ; then # important exists and is not empty then pipline B2
+    echo "/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submitB2.sub -N V_$rand_target -v \"random=$rand_target,ncbiid=$ncbiid\" >| $result_dir/jobid.txt" >> error.txt
+    /usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submitB2.sub -N V_$rand_target -v "random=$rand_target,ncbiid=$ncbiid" >| $result_dir/jobid.txt
+else # important does not exist - or does but is empty then pipline B1
+    echo "/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submitB1.sub -N V_$rand_target -v \"random=$rand_target,ncbiid=$ncbiid\" >| $result_dir/jobid.txt" >> error.txt
+    /usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submitB1.sub -N V_$rand_target -v "random=$rand_target,ncbiid=$ncbiid" >| $result_dir/jobid.txt
+fi
 
 # Remove the previous indecx.html and replace it with index.php
 /bin/rm -rf $result_dir/index.html

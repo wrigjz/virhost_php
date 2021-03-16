@@ -25,8 +25,8 @@ fclose($errfile_handle);
 # Now submit the job to the qeuue system
 if ($ret_var == 0) {
     echo "We will now queue the VirHost job, please wait a few seconds to be directed to the running/results page.<br>";
-    #echo '/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_' . $rand_target . ' -v "random=' . $rand_target . '","ncbiid=' . $ncbiid . '" > ' . $result_dir . 'jobid.txt';
-    exec('/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submit.sub -N V_' . $rand_target . ' -v "random=' . $rand_target . '","ncbiid=' . $ncbiid . '" > ' . $result_dir . 'jobid.txt');
+    #echo '/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submitA.sub -N V_' . $rand_target . ' -v "random=' . $rand_target . '","ncbiid=' . $ncbiid . '" > ' . $result_dir . 'jobid.txt';
+    exec('/usr/local/bin/qsub -S /bin/bash /var/www/html/virhost/scripts/submitA.sub -N V_' . $rand_target . ' -v "random=' . $rand_target . '","ncbiid=' . $ncbiid . '" > ' . $result_dir . 'jobid.txt');
     symlink($target_dir . 'error.txt', $result_dir . 'error_link.txt');
 } else {
     exec('rsync -av ' . $target_dir . ' ' . $result_dir);

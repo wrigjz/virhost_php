@@ -13,5 +13,5 @@ echo Working directory is `pwd`
 touch /scratch/working/$random/made_it
 
 # run the job
-/var/www/html/virhost/scripts/virhost.sh $ncbiid
+/var/www/html/virhost/scripts/virhostA.sh $ncbiid
 cp -r /scratch/working/$random/* /var/www/html/virhost/results/$random/.

@@ -5,9 +5,10 @@
 ## to copy, modify and distribute this script but all modifications must be offered
 ## back to the original authors
 ###################################################################################################
-# This is the main driver script for running the virhst process
+# This is the main driver script for running the virhost process
 # it takes a gene symbol and search for orthologs
 # runs an alignment and then does the prediction
+# This is Karens piplineB1
 
 # setup the envirnment
 echo "Setting up the Anaconda environment" >> error.txt
@@ -22,6 +23,8 @@ if [ $error -ne 0 ] ; then
 fi
 wait
 
+# We have already run sequence_to_gene.py from the original php script so no need
+# to do it here
 # retreieve the codes from ncbi
 echo "Retrieveing the $1 codes from ncbi" >> error.txt
 /home/programs/ncbi-blast/datasets download ortholog symbol $1 --taxon human > /dev/null 2>>error.txt
@@ -45,7 +48,18 @@ if [ $error -ne 0 ] ; then
 fi
 wait
 
-# Alidn using clustal omega
+# Adding the fasta input to the Dataset
+echo "Adding fasta in put to the dataset" >> error.txt
+python3 /var/www/html/virhost/scripts/add_input_fasta.py >> error.txt 2>&1
+error=$?
+if [ $error -ne 0 ] ; then
+    echo "Unable to add the fasta input to the dataset" >> error.txt
+    echo $error >> error.txt
+    exit 1
+fi
+wait
+
+# Align using clustal omega
 echo "Running Clustal Omega" >> error.txt
 error=$?
 /home/programs/clustalw2.1_linux/bin/clustalo-1.2.4-Ubuntu-x86_64 -i ./ncbi_dataset/data/protein.faa \
@@ -70,7 +84,7 @@ fi
 wait
 
 echo "Running ortholog_analysis" >> error.txt
-python3 /var/www/html/virhost/scripts/ortholog_analysis.py >> error.txt 2>&1
+python3 /var/www/html/virhost/scripts/ortholog_analysis_fasta.py >> error.txt 2>&1
 error=$?
 if [ $error -ne 0 ] ; then
     echo "Dataformat failed" >> error.txt
