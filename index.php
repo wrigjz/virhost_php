@@ -99,7 +99,7 @@ function failed($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses Server.";
+    echo "<h2>VirHost sadly failed.";
     echo "</center>";
     echo "<H2>Your job $jobid has failed for some reason.</H2>";
     if (filesize("error.txt") != 0) {
@@ -124,7 +124,7 @@ function queuedup($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses Server.";
+    echo "<h2>Queded and waiting to run VirHost.";
     echo "</center>";
     echo "<H2>Your job is $jobid and is currently in the queue for calculation.</H2>";
     echo "This page will be updated every minute";
@@ -143,7 +143,7 @@ function running($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses Server.";
+    echo "<h2>Running at VirHost.";
     echo "</center>";
     echo "<H2>Your job is $jobid and is currently running.</H2>";
     echo "This page will be updated every minute";
@@ -163,7 +163,7 @@ function finished($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses server.";
+    echo "<h2>Results from VirHost.";
     echo "</center>";
     # Now reate the webpage itself
     echo "Your job has finished and the results are available below.<br>";
@@ -194,7 +194,7 @@ function genesymbol() {
      echo "</head>";
      echo "<body BGCOLOR=\"#FFFFFF\">";
      echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-     echo "<h2>Welcome to VirHost, The Potential Hosts for Human Viruses server.";
+     echo "<h2>VirHost.";
      echo "</center>";
      echo "This page will be updated every minute<br>";
      echo "At the present time the server is attempting to retrieve a gene code from your fasta sequence.<br>";
