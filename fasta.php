@@ -6,6 +6,7 @@
 ## back to the original authors
 ###################################################################################################
 # This php ver. 7 script askes for a fasta format sequence 
+# If there are important residues then those are written out as well
 # Then it submits a virhost job to the server
 
 # Retrieve the fasta sequence from the webapge, checks if there is one and then saves it to a file
@@ -18,9 +19,18 @@ if ($fasta != true) {
 # Call the mkdirFunc and get the target, results directories and random number back
 list($rand_target, $target_dir, $result_dir) = mkdirFunc();
 
-# Make the list.txt file and save it to the target directory
+# Make the input.fasta file and save it to the target directory
 $myfile = $target_dir . "input.fasta";
 $listfile = fopen($myfile, "w");
+
+# Write out the important residues out if they were given
+$important = ($_POST["IMPRES"]);
+if ($important == true) {
+    $important_handle = $target_dir . "imp_residues.txt";
+    $imp_res_out = fopen($important_handle, "w");
+    fwrite($imp_res_out, $imporant);
+    fclose($important_handle);
+}
 
 # Write a fasta header if there isn't one already
 $header = 0; # check if the '>' exists, if so just write the file, if not add a line

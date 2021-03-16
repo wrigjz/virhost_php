@@ -20,6 +20,22 @@ echo $target_dir >> error.txt
 # setup environment
 source /home/programs/anaconda/linux-5.3.6/init.sh
 
+# Before we do anything else we check the important residues (if any) against
+# the fasta sequence
+
+# Now we check the important residues against the fasta input file
+if [ -s imp_residues.txt ] ; then # important exists and is not empty so we check the sequence
+    echo "Running check against the fasta file" >> error.txt
+    python3 /var/www/html/virhost/scripts/check_fasta_res.py >> error.txt 2>&1
+    error=$?
+    if [ $error -ne 0 ] ; then
+        echo "Important residues do not seem to match the fasta file" >> error.txt
+        echo $error >> error.txt
+        exit 1
+    fi
+fi
+wait
+
 # Get the code from ncbi
 echo "Getting the code from NCBI" >> error.txt
 ncbiid=`python3 /var/www/html/virhost/scripts/sequence_to_gen.py`

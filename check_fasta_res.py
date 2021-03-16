@@ -15,7 +15,7 @@ for line in open('input.fasta'):
 
 for el in imp_residues:
     if seq[int(el[1:])-1] != el[0]:
-        print ('wrong')
+        print ('Opps important residue ', el[0], int(el[1:]), ' is not the sequence residue of ', seq[int(el[1:])-1],int(el[1:]),sep="")
         break
 
 

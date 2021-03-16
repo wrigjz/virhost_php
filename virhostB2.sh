@@ -23,17 +23,6 @@ if [ $error -ne 0 ] ; then
 fi
 wait
 
-# Now we check the important residues against the fasta input file
-echo "Running check against the fasta file" >> error.txt
-python3 /var/www/html/virhost/scripts/check_fasta_res.py >> error.txt 2>&1
-error=$?
-if [ $error -ne 0 ] ; then
-    echo "Important residues do not seem to match the fasta file" >> error.txt
-    echo $error >> error.txt
-    exit 1
-fi
-wait
-
 # We have already run sequence_to_gene.py from the original php script so no need
 # to do it here
 # retreieve the codes from ncbi
