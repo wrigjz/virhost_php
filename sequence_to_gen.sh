@@ -28,9 +28,14 @@ if [ -s imp_residues.txt ] ; then # important exists and is not empty so we chec
     echo "Running check against the fasta file" >> error.txt
     python3 /var/www/html/virhost/scripts/check_fasta_res.py >> error.txt 2>&1
     error=$?
-    if [ $error -ne 0 ] ; then
+    test=`grep 'Opps important residue' error.txt`
+    if [ $error -ne 0 ]  || [ "$test" != "" ] ; then
         echo "Important residues do not seem to match the fasta file" >> error.txt
         echo $error >> error.txt
+        /bin/rm -rf $result_dir/index.html
+        /bin/ln -s /var/www/html/virhost/scripts/index.php $result_dir/index.php
+        /bin/cp error.txt $result_dir/error.txt
+        echo "alas," >|  $result_dir/jobid.txt
         exit 1
     fi
 fi

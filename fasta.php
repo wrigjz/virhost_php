@@ -28,7 +28,7 @@ $important = ($_POST["IMPRES"]);
 if ($important == true) {
     $important_handle = $target_dir . "imp_residues.txt";
     $imp_res_out = fopen($important_handle, "w");
-    fwrite($imp_res_out, $imporant);
+    fwrite($imp_res_out, $important);
     fclose($important_handle);
 }
 
