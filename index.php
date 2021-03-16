@@ -173,6 +173,12 @@ function finished($jobid) {
     echo "<p>The clustal omega alignment can be downloaded from <a href=\"clustal.aln\">here</a>.";
     echo "<p>The results xml file can be downloaded from <a href=\"results.xml\">here</a>.";
     echo "<p>The names file can be downloaded from <a href=\"names.txt\">here</a>.";
+    if (file_exists("imp_residues.txt")) {  # Extra comments for the important residues
+        echo "<p>The output is a comma separated file with important residues given in order they've been provided in the query.";
+        echo "<br>* means that the corresponding amino acid remains the same as it is given in the query";
+        echo "<br>- means an amino acid has been changed and substitution is non conservative";
+        echo "<br>For the rest of cases of conservative substitution, a single letter amino acid name is provided to show the change";
+    }
     echo "<pre>";
     echo file_get_contents( "output.txt" ); // get the contents, and echo it out.
     echo "</pre>";
