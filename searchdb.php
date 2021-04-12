@@ -11,7 +11,7 @@
 $input1 = ($_POST["VIRUSNAME"]);
 
 # A test input
-#$input1 = "bat";
+#$input1 = "herpes";
 if ($input1 != true ) {
     echo "Sorry but you do not appear to have entered a recgonizable Virus name, please try again";
     exit();
