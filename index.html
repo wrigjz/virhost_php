@@ -20,12 +20,12 @@
       Biomedical Sciences, Academia Sinica, Taipei, Taiwan<br>
         <sup>2</sup>Department of Chemistry, National TsingHua University,
           HsinChu, Taiwan </h3>
-    <p>This server can be used to search for other species that may host human viruses.</p>
+    <p>This server can be used to search for other species that may host human viruses. You can also search our database on viruses as well for any information we may have.</p>
       For your target protein provide either a NCBI gene symbol name such as ACE2 or a <a href="examples/ace2/input.fasta">fasta format sequence</a>  that you would like the results for.</p>
     <p>An example of the results for the ACE2 entry can be found on this <a href="examples/ace2">page</a>.
     <hr style="border-style: solid; color: black;">
 
-<b>Submission area choose option A <em> or </em> Option B:</b><br>
+<b>Submission area choose one of option A, B or Option C:</b><br>
 <form action="scripts/ncbiid.php" method="post" enctype="multipart/form-data">
   <p> <b>Option A) For a known NCBI gene symbol name.</b><br>
   Provide a NCBI gene symbol: <input type="text" name="NCBIID"> 
@@ -38,6 +38,12 @@
   If you have specific important residues then enter them here, separated by commas, e.g. <em>S19,Q24,T27,F28,D30,K31</em> if none then just leave this box blank.<br>
   <textarea cols="80" rows="1" name="IMPRES" id="IMPRES"></textarea><br>
   <input type="submit" value="Click to submit the Fasta Sequence" name="submit">
+</form>
+<form action="scripts/searchdb.php" method="post" enctype="multipart/form-data">
+<p> <b>Option C) To see what information we have on your virus.</b><br>
+If you would just like our stored information on a number of viruses then enter the virus name below to search for it.<br>
+Provide Virus name: <input type="text" name="VIRUSNAME">
+<input type="submit" value="Click to submit virus name" name="submit">
 </form>
 
 <hr style="border-style: solid; color: black;">
