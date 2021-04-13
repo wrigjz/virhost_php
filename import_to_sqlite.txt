@@ -1,9 +1,15 @@
 Edit the file to add '^' as the column delimiters, remove all spaces before and after the ^
+export as csv utf-8
+:1,$ s/,^,/^/g
+:1,$ s/^M//
+:1,$ s/\^^^//g
+
+
 
 % sqlite3 virus.db
-sqlite> create table virhost (virusname text, attachment text, receptor text, tissue text, receptor_host text, reference text, pubmedid text);
+sqlite> create table virhost (virusname text, attachment text, receptor text, tissue text, receptor_host text, reference, pubmedid text);
 sqlite> .separator "^"
-sqlite> .import viruses_table_combined.txt virhost
+sqlite> .import viruses_table_combined.csv virhost
 sqlite> .separator " "
 sqlite> select virusname from virhost where virusname="Aichi virus";
 sqlite> select virusname from virhost where virusname like '%bat%';
