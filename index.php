@@ -9,7 +9,7 @@
 # If a job is queued or running it tells you and gives the position and refreshes each minute
 
 # The main driver code is here, we get the jobid and then check the queue system to see if it is
-# Queded or Running or exiting, if it is neither then we check for a results file and if there is one we assume it is finished
+# Queued or Running or exiting, if it is neither then we check for a results file and if there is one we assume it is finished
 # If it is not in the queue system and the results file is empty we assume it has failed
 #
 # Open the random.txt file to get the job number from the file saved when it was submitted
@@ -99,7 +99,7 @@ function failed($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>VirHost sadly failed.";
+    echo "<H2>VirHost sadly failed.</H2>";
     echo "</center>";
     echo "<H2>Your job $jobid has failed for some reason.</H2>";
     if (filesize("error.txt") != 0) {
@@ -124,7 +124,7 @@ function queuedup($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>Queded and waiting to run VirHost.";
+    echo "<H2>Queued and waiting to run VirHost.</H2>";
     echo "</center>";
     echo "<H2>Your job is $jobid and is currently in the queue for calculation.</H2>";
     echo "This page will be updated every minute";
@@ -143,7 +143,7 @@ function running($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>Running at VirHost.";
+    echo "<H2>Running at VirHost.</H2>";
     echo "</center>";
     echo "<H2>Your job is $jobid and is currently running.</H2>";
     echo "This page will be updated every minute";
@@ -163,7 +163,7 @@ function finished($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>Results from <a href=\"https://virhost.limlab.dnsalias.org\">VirHost</a> - The Potential Hosts for Human Viruses Server";
+    echo "<h1>Results from <a href=\"https://virhost.limlab.dnsalias.org\">VirHost</a> - The Potential Hosts for Human Viruses Server";
     echo "</center>";
     # Now reate the webpage itself
     echo "Your job has finished and the results are available below.<br>";
@@ -192,7 +192,7 @@ function genesymbol() {
      echo "</head>";
      echo "<body BGCOLOR=\"#FFFFFF\">";
      echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-     echo "<h2>VirHost.";
+     echo "<H2>VirHost.<H2>";
      echo "</center>";
      echo "This page will be updated every minute<br>";
      echo "At the present time the server is attempting to retrieve a gene code from your fasta sequence.<br>";
