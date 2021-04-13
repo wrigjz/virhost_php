@@ -163,7 +163,7 @@ function finished($jobid) {
     echo "</head>";
     echo "<body BGCOLOR=\"#FFFFFF\">";
     echo "<center> <img src=\"../../images/as-en_07.gif\" alt=\"Academia Sinica Logo\">";
-    echo "<h2>Results from VirHost.";
+    echo "<h2>Results from <a href=\"https://virhost.limlab.dnsalias.org\">VirHost</a> - The Potential Hosts for Human Viruses Server";
     echo "</center>";
     # Now reate the webpage itself
     echo "Your job has finished and the results are available below.<br>";
@@ -171,8 +171,6 @@ function finished($jobid) {
     echo "<p>The intermediate file  can also be downloaded from <a href=\"output_redundant.txt\">here</a>.";
     echo "<p>The zip file of orthologs can be downloaded from <a href=\"ncbi_dataset.zip\">here</a>.";
     echo "<p>The clustal omega alignment can be downloaded from <a href=\"clustal.aln\">here</a>.";
-    echo "<p>The results xml file can be downloaded from <a href=\"results.xml\">here</a>.";
-    echo "<p>The names file can be downloaded from <a href=\"names.txt\">here</a>.";
     if (file_exists("imp_residues.txt")) {  # Extra comments for the important residues
         echo "<p>The output is a comma separated file with important residues given in order they've been provided in the query.";
         echo "<br>* means that the corresponding amino acid remains the same as it is given in the query";

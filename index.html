@@ -12,8 +12,7 @@
 <body BGCOLOR="#EEEEEE">
    <div style="text-align: center;">
       <center> <img src="images/as-en_07.gif" alt="Academia Sinica Logo"></center>
-    </div>
-    <h1 style="text-align: center;">VirHost, The Potential Hosts for Human Viruses Server</h1>
+    <h1 style="text-align: center;">VirHost - The Potential Hosts for Human Viruses Server</h1>
     <h2 style="text-align: center;">Karen Sargsyan<sup>1</sup>, Karine Mazmanian<sup>1</sup>,
     Jon D. Wright<sup>1</sup> and Carmay Lim<sup>1,2</sup></h2>
     <h3 style="text-align: center;"> <sup>1</sup>Institute of
@@ -26,40 +25,38 @@
     <hr style="border-style: solid; color: black;">
 
 <b>Submission area choose one of option A, B or Option C:</b><br>
+<form action="scripts/searchdb.php" method="post" enctype="multipart/form-data">
+<p> <b>Option A) To see what information we have on your virus.</b><br>
+If you would just like our stored information on a number of viruses then enter the virus name below to search for it.<br>
+Provide virus name: <input type="text" name="VIRUSNAME">
+<input type="submit" value="Click to submit virus name" name="submit">
+</form>
 <form action="scripts/ncbiid.php" method="post" enctype="multipart/form-data">
-  <p> <b>Option A) For a known NCBI gene symbol name.</b><br>
+  <p> <b>Option B) For a known NCBI gene symbol name.</b><br>
   Provide a NCBI gene symbol: <input type="text" name="NCBIID"> 
   <input type="submit" value="Click to submit NCBI Gene Symbol" name="submit">
 </form>
 <form action="scripts/fasta.php" method="post" enctype="multipart/form-data">
-  <p> <b>Option B) For a fasta format, with or without known important residues.</b><br>
+  <p> <b>Option C) For a fasta format, with or without known important residues.</b><br>
   Please paste your fasta sequence into the box here, single letter codes only:<br>
   <textarea cols="80" rows="10" name="FASTA" id="FASTA"></textarea><br>
   If you have specific important residues then enter them here, separated by commas, e.g. <em>S19,Q24,T27,F28,D30,K31</em> if none then just leave this box blank.<br>
   <textarea cols="80" rows="1" name="IMPRES" id="IMPRES"></textarea><br>
   <input type="submit" value="Click to submit the Fasta Sequence" name="submit">
 </form>
-<form action="scripts/searchdb.php" method="post" enctype="multipart/form-data">
-<p> <b>Option C) To see what information we have on your virus.</b><br>
-If you would just like our stored information on a number of viruses then enter the virus name below to search for it.<br>
-Provide Virus name: <input type="text" name="VIRUSNAME">
-<input type="submit" value="Click to submit virus name" name="submit">
-</form>
 
 <hr style="border-style: solid; color: black;">
-References for programs VirHost uses are:
-<p>
-Camacho, Christiam, George Coulouris, Vahram Avagyan, Ning Ma, Jason Papadopoulos, Kevin Bealer, and Thomas L. Madden. 2009. 'BLAST+: architecture and applications.', BMC Bioformatics, 10: 421. <a href="https://doi.org/10.1186/1471-2105-10-421">DOI: https://doi.org/10.1186/1471-2105-10-421</a></p>
+Resources that VirHost uses:
 <p>
 NCBI, Resource Coordinators. 2017. 'Database Resources of the National Center for Biotechnology Information.', Nuc. Acids Res., 45: D12–D17. <a href="https://doi.org/10.1093/nar/gky1069">DOI: https://doi.org/10.1093/nar/gky1069</a></p>
-<p>
-Sievers, Fabian, and Desmond G. Higgins. 2014. 'Clustal Omega, accurate alignment of very large numbers of sequences.', Methods Mol Biol, 1079: 105-16. <a href="https://doi.org/10.1007/978-1-62703-646-7_6">DOI: https://doi.org/10.1007/978-1-62703-646-7_6</a></o>
 <p>
 UniProt, Consortium. 2021. 'UniProt: the universal protein knowledgebase in 2021.', Nuc. Acids Res., 49: D480-D89. <a href="https://doi.org/10.1093/nar/gkaa1100">DOI: https://doi.org/10.1093/nar/gkaa1100</a></p>
 
 <p>Code that this server uses can be obtained from github as <a href="https://github.com/wrigjz/virhost_php">wrigjz/virhost_php.</a>
 <hr style="border-style: solid; color: black;">
-   The <a href="https://virhost.limlab.dnsalias.org">VirHost</a> server was created by Karen Sargsyan, Karine Mazmanian, Jon D Wright and Carmay Lim and is hosted at <a href="http://www.ibms.sinica.edu.tw">The Institute of Biomedical Sciences</a>, <a href="http://www.sinica.edu.tw">Academia Sinica</a>, Taipei 11529, Taiwan.
+   The <a href="https://virhost.limlab.dnsalias.org">VirHost</a> server is hosted at <a href="http://www.ibms.sinica.edu.tw">The Institute of Biomedical Sciences</a>, <a href="http://www.sinica.edu.tw">Academia Sinica</a>, Taipei 11529, Taiwan.<br>
+   To contact us please email karen.sarkisyan@gmail_remove_this_.com.
                <hr style="border-style: solid; color: black;">
+    </div>
 </body>
 </html>
