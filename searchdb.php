@@ -37,7 +37,8 @@ if ($test == false) {
 else {
     echo '<hr style="border-style: solid; color: black;">';
     echo "<table>";
-    echo "<tr><th>Virus Name</th><th>Attachment</th><th>Receptor</th><th>Tissue</th><th>Receptor Host</th></th><th>References</th><th>PubMed</th></tr>"; 
+    #echo "<tr><th>Virus Name</th><th>Attachment</th><th>Receptor</th><th>Tissue</th><th>Receptor Host</th></th><th>References</th><th>PubMed</th></tr>"; 
+    echo "<tr><th>Virus Name</th><th>Attachment</th><th>Receptor</th><th>Tissue</th><th>Receptor Host</th></th><th>PubMed</th></tr>"; 
     $results->reset(); # Need to rewind the results back adter the above test
     while ($row = $results->fetchArray()) {
         echo "<tr><td style=\"text-align: center; vertical-align: middle;\">";
@@ -50,10 +51,19 @@ else {
         print "{$row['tissue']}";
         echo "</td><td style=\"text-align: center; vertical-align: middle;\">";
         print "{$row['receptor_host']}";
+        #echo "</td><td style=\"text-align: center; vertical-align: middle;\">";
+        #print "{$row['reference']}";
         echo "</td><td style=\"text-align: center; vertical-align: middle;\">";
-        print "{$row['reference']}";
-        echo "</td><td style=\"text-align: center; vertical-align: middle;\">";
-        print "{$row['pubmedid']}";
+        $temp1 = explode(" ", $row['pubmedid']);  # get the pubmed records from the database
+        foreach ($temp1 as &$value) { # check each word to see if we print it
+            if (substr($value, 0, 4) == "ref.") {  # print ref numbers
+                print "$value ";
+            }
+            if (strlen($value) > 7) { # if its more than 8 characters then its a pubmed record
+                $pubmedout = "<a href=\"https://pubmed.ncbi.nlm.nih.gov/$value\">$value</a><br>";
+                print $pubmedout;
+            }
+        }
         echo "</td></tr>";
     }
     echo "</table>"; 
